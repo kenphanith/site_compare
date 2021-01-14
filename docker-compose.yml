@@ -1,11 +1,14 @@
 version: "3.8"
 services:
-  python3:
-    restart: always
-    build: .
-    container_name: 'python3'
-    working_dir: '/root/'
+  site_compare:
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: site_compare
+    container_name: 'site_compare'
+    working_dir: '/home/kenphanith'
     stdin_open: true
     tty: true
     volumes:
-      - ./data:/home/app_user/data
+      - ./site_compare.py:/home/kenphanith/site_compare.py
